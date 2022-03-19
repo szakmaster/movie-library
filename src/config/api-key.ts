@@ -1,0 +1,1 @@
+export const API_KEY = "4b2ed23b7316c1a50c687554408fc823";  // Personal TMDB API key

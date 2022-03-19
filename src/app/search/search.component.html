@@ -1,0 +1,7 @@
+<div class="container">
+    <label>Search: </label>
+    <input class="input-lg form-control well" type="search" #searchInput placeholder="Search...">
+
+    <app-result-list [searchResult]="searchResult" (onSelectedMovie)="onMovieSelected($event)"></app-result-list>
+    <app-detail [selectedMovie]="selectedMovie"></app-detail>
+</div>

@@ -1,0 +1,88 @@
+<div class="col-md-8" *ngIf="movie" style="display:flex">
+    <div class="poster">
+      <img src="https://image.tmdb.org/t/p/w342{{movie.poster_path}}" alt="{{movie.original_title}}">
+    </div>
+    <div>
+      <h3>{{movie.original_title}} <small>({{movie.release_date.substring(0,4)}})</small></h3>
+      <p>{{movie.overview}}</p>
+      <div class="row">
+        <div class="col-md-4">{{movie.vote_average}} vote average</div>
+        <div class="col-md-4">{{movie.vote_count}} vote count</div>
+        <div class="col-md-4">{{movie.popularity}} popularity</div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div>{{movie.crew_list[0].name}}</div>
+          <div>{{movie.crew_list[0].job}}</div>
+        </div>
+        <div class="col-md-4">
+          <div>{{movie.crew_list[1].name}}</div>
+          <div>{{movie.crew_list[1].job}}</div>
+        </div>
+        <div class="col-md-4">
+          <div>{{movie.crew_list[2].name}}</div>
+          <div>{{movie.crew_list[2].job}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[0].profile_path}}" alt="{{movie.cast_list[0].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[0].name}}</div>
+            <div>{{movie.cast_list[0].character}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[1].profile_path}}" alt="{{movie.cast_list[1].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[1].name}}</div>
+            <div>{{movie.cast_list[1].character}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[2].profile_path}}" alt="{{movie.cast_list[2].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[2].name}}</div>
+            <div>{{movie.cast_list[2].character}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[3].profile_path}}" alt="{{movie.cast_list[3].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[3].name}}</div>
+            <div>{{movie.cast_list[3].character}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[4].profile_path}}" alt="{{movie.cast_list[4].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[4].name}}</div>
+            <div>{{movie.cast_list[4].character}}</div>
+          </div>
+        </div>
+        <div class="col-md-6" style="display:flex">
+          <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w45{{movie.cast_list[5].profile_path}}" alt="{{movie.cast_list[5].name}}">
+          </div>
+          <div>
+            <div>{{movie.cast_list[5].name}}</div>
+            <div>{{movie.cast_list[5].character}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
