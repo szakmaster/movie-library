@@ -1,14 +1,27 @@
 <h3>Search Results</h3>
 <div class="grid-container">
   <div class="result-item" *ngFor="let movie of searchResult">
-      <h4>
-        {{ movie.original_title }}
-        <small>({{ movie.release_date.substring(0, 4) }})</small>
-      </h4>
-      <img
-        src="https://image.tmdb.org/t/p/w342{{ movie.poster_path }}"
-        alt="{{ movie.original_title }}"
-      />
+    <h4
+      matTooltip="{{ movie.original_title }}"
+      [matTooltipPosition]="'above'"
+      [matTooltipShowDelay]="tooltipShowDelay"
+      [matTooltipHideDelay]="tooltipHideDelay"
+      matTooltipDisabled="{{ movie.original_title.length <= maxLengthOfMovieTitle }}"
+    >
+      {{
+        movie.original_title.length > maxLengthOfMovieTitle
+          ? (movie.original_title | slice: 0:maxLengthOfMovieTitle-1) + "..."
+          : movie.original_title
+      }}
+      <small *ngIf="movie.release_date">
+        ({{ movie.release_date.substring(0, 4) }})
+      </small>
+    </h4>
+    <img
+      src="https://image.tmdb.org/t/p/w185{{ movie.poster_path }}"
+      (error)="pictureNotLoading($event)"
+      alt="{{ movie.original_title }}"
+    />
   </div>
 </div>
 

@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ResultListComponent } from './home/search/result-list/result-list.component';
 import { SearchComponent } from './home/search/search.component';
 import { PopularMoviesComponent } from './home/popular-movies/popular-movies.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { PopularMoviesComponent } from './home/popular-movies/popular-movies.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   exports: [],
   providers: [],

@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isLoading = false;
   searchResult!: Movie[];
   selectedMovie: any;
+  minSearchCriteriaLength: number = 3;
 
   constructor(private tmdbService: TmdbService) { }
 
@@ -23,7 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Subscribe to the search request
     fromEvent(this.searchInput?.nativeElement, 'keyup').pipe(
       map((event: any) => event.target.value),
-      filter((searchQuery: string) => searchQuery.length > 4),  // min char length must be > 4
+      filter((searchQuery: string) => searchQuery.length >= this.minSearchCriteriaLength),
       debounceTime(1000), // wait 1 sec between keyUp events
       distinctUntilChanged(),  // ignore the same search queries
       takeUntil(this.destroySubject$)
@@ -35,6 +36,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           console.log(response);
           this.searchResult = response.results as Movie[];
+          this.searchResult = this.sortSearchResultByReleaseDate(this.searchResult);
           this.isSearchResult.emit(this.searchResult.length > 0);
         },
         error: (error) =>  { 
@@ -56,5 +58,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.destroySubject$.next(true);
+  }
+
+  private sortSearchResultByReleaseDate(movies: Movie[]) {
+    return movies.sort((a, b) => (a.release_date < b.release_date) ? 1 : -1);
   }
 }

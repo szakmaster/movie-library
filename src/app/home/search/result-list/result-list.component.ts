@@ -11,6 +11,10 @@ export class ResultListComponent implements OnInit {
   @Input() searchResult!: Movie[];
   @Output() onSelectedMovie: EventEmitter<Movie> = new EventEmitter<Movie>();
 
+  tooltipShowDelay: number = 500; // millisecond
+  tooltipHideDelay: number = 250;
+  maxLengthOfMovieTitle: number = 25;
+
   constructor() { }
 
   ngOnInit() {
@@ -18,6 +22,10 @@ export class ResultListComponent implements OnInit {
 
   getMovieDetails(movie: Movie) {
     this.onSelectedMovie.emit(movie);
+  }
+
+  pictureNotLoading(event: any) { 
+    event.target.src = 'assets/imageNotFound.png'; 
   }
 
 }

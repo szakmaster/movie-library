@@ -1,17 +1,17 @@
 .grid-container {
     display: grid;
     gap: 25px 10px;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .result-item {
     text-align: center;
-    cursor: pointer;
-}
-
-img {
-    border-radius: 3%;
-    width: 75%;
+    
+    img {
+        cursor: pointer;
+        border-radius: 3%;
+        width: 185px;
+    }
 }
 
 img:hover {
