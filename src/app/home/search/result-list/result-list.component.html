@@ -1,0 +1,17 @@
+<h3>Search Results</h3>
+<div class="grid-container">
+  <div class="result-item" *ngFor="let movie of searchResult">
+      <h4>
+        {{ movie.original_title }}
+        <small>({{ movie.release_date.substring(0, 4) }})</small>
+      </h4>
+      <img
+        src="https://image.tmdb.org/t/p/w342{{ movie.poster_path }}"
+        alt="{{ movie.original_title }}"
+      />
+  </div>
+</div>
+
+<!-- <a href="javascript:;" (click)="getMovieDetails(movie)">{{
+    movie.original_title
+  }}</a> -->

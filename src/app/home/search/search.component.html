@@ -1,0 +1,8 @@
+<div class="container">
+    <label>Search: </label>
+    <input class="input-lg form-control well" type="search" #searchInput placeholder="Search...">
+    <button type="button" class="clear-filter-button" (click)="clearSearchResults()">X</button>
+
+    <app-result-list *ngIf="searchResult" [searchResult]="searchResult" (onSelectedMovie)="onMovieSelected($event)"></app-result-list>
+    <!-- <app-detail [selectedMovie]="selectedMovie"></app-detail> -->
+</div>

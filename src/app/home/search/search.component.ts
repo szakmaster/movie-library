@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, map, Subject, takeUntil } from 'rxjs';
-import { Movie } from '../shared/models/movie';
-import { TmdbService } from '../shared/tmdb.service';
+import { Movie } from 'src/app/shared/models/movie';
+import { TmdbService } from 'src/app/shared/tmdb.service';
+
 
 @Component({
   selector: 'app-search',
@@ -10,6 +11,7 @@ import { TmdbService } from '../shared/tmdb.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef | undefined;
+  @Output() isSearchResult: EventEmitter<boolean> = new EventEmitter();
   private destroySubject$ = new Subject<boolean>();
   isLoading = false;
   searchResult!: Movie[];
@@ -33,8 +35,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           console.log(response);
           this.searchResult = response.results as Movie[];
+          this.isSearchResult.emit(this.searchResult.length > 0);
         },
-        error: (error) => console.log(`Error during search by ${query}: ${error}`),
+        error: (error) =>  { 
+          console.log(`Error during search by ${query}: ${error}`); 
+          this.isLoading = false;
+        },
         complete: () => this.isLoading = false
       });
     });
@@ -42,6 +48,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   onMovieSelected(movie: any) {
     this.selectedMovie = movie;
+  }
+
+  clearSearchResults() {
+    this.searchResult = [];
   }
 
   ngOnDestroy(): void {

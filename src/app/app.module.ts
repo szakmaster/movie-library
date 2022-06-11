@@ -5,21 +5,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
-import { ResultListComponent } from './search/result-list/result-list.component';
-import { SearchComponent } from './search/search.component';
+import { HomeComponent } from './home/home.component';
+import { ResultListComponent } from './home/search/result-list/result-list.component';
+import { SearchComponent } from './home/search/search.component';
+import { PopularMoviesComponent } from './home/popular-movies/popular-movies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DetailsComponent,
+    HomeComponent,
     SearchComponent,
     ResultListComponent,
-    DetailsComponent
+    PopularMoviesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
