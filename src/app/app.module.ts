@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
-import { ResultListComponent } from './home/search/result-list/result-list.component';
-import { SearchComponent } from './home/search/search.component';
+import { ResultListComponent } from './search/result-list/result-list.component';
+import { SearchComponent } from './search/search.component';
 import { PopularMoviesComponent } from './home/popular-movies/popular-movies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MenuComponent } from './menu/menu.component';
+import { FavoritesComponent } from './home/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HomeComponent,
     SearchComponent,
     ResultListComponent,
-    PopularMoviesComponent
+    PopularMoviesComponent,
+    MenuComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
