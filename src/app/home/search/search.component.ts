@@ -14,9 +14,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() isSearchResult: EventEmitter<boolean> = new EventEmitter();
   private destroySubject$ = new Subject<boolean>();
   isLoading = false;
-  searchResult!: Movie[];
+  searchResult: Movie[] = [] as Movie[];
   selectedMovie: any;
   minSearchCriteriaLength: number = 3;
+  searchCriteriaLength: number = 0;
 
   constructor(private tmdbService: TmdbService) { }
 
@@ -24,36 +25,43 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Subscribe to the search request
     fromEvent(this.searchInput?.nativeElement, 'keyup').pipe(
       map((event: any) => event.target.value),
-      filter((searchQuery: string) => searchQuery.length >= this.minSearchCriteriaLength),
       debounceTime(1000), // wait 1 sec between keyUp events
       distinctUntilChanged(),  // ignore the same search queries
       takeUntil(this.destroySubject$)
     ).subscribe((query: string) => {
-      this.isLoading = true;
+      this.searchCriteriaLength = query.length;
 
-      this.tmdbService.searchMovie(query).pipe(takeUntil(this.destroySubject$))
-      .subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.searchResult = response.results as Movie[];
-          this.searchResult = this.sortSearchResultByReleaseDate(this.searchResult);
-          this.isSearchResult.emit(this.searchResult.length > 0);
-        },
-        error: (error) =>  { 
-          console.log(`Error during search by ${query}: ${error}`); 
-          this.isLoading = false;
-        },
-        complete: () => this.isLoading = false
-      });
+      if (this.searchCriteriaLength >= this.minSearchCriteriaLength) {
+        this.isLoading = true;
+
+        this.tmdbService
+          .searchMovie(query)
+          .pipe(takeUntil(this.destroySubject$))
+          .subscribe({
+            next: (response: any) => {
+              console.log(response);
+              this.searchResult = response.results as Movie[];
+              this.searchResult = this.sortSearchResultByReleaseDate(
+                this.searchResult
+              );
+              this.isSearchResult.emit(this.searchResult.length > 0);
+            },
+            error: (error) => {
+              console.log(`Error during search by ${query}: ${error}`);
+              this.isLoading = false;
+            },
+            complete: () => (this.isLoading = false),
+          });
+      } else {
+        this.searchResult = [];
+        this.isSearchResult.emit(this.searchResult.length > 0);
+      }
+      
     });
   }
 
   onMovieSelected(movie: any) {
     this.selectedMovie = movie;
-  }
-
-  clearSearchResults() {
-    this.searchResult = [];
   }
 
   ngOnDestroy(): void {
