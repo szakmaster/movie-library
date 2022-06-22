@@ -11,7 +11,6 @@ import { TmdbService } from 'src/app/shared/tmdb.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef | undefined;
-  @Output() isSearchResult: EventEmitter<boolean> = new EventEmitter();
   private destroySubject$ = new Subject<boolean>();
   isLoading = false;
   searchResult: Movie[] = [] as Movie[];
@@ -44,7 +43,6 @@ export class SearchComponent implements OnInit, OnDestroy {
               this.searchResult = this.sortSearchResultByReleaseDate(
                 this.searchResult
               );
-              this.isSearchResult.emit(this.searchResult.length > 0);
             },
             error: (error) => {
               console.log(`Error during search by ${query}: ${error}`);
@@ -54,9 +52,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           });
       } else {
         this.searchResult = [];
-        this.isSearchResult.emit(this.searchResult.length > 0);
       }
-      
     });
   }
 

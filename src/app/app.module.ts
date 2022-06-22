@@ -10,9 +10,11 @@ import { ResultListComponent } from './search/result-list/result-list.component'
 import { SearchComponent } from './search/search.component';
 import { PopularMoviesComponent } from './home/popular-movies/popular-movies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MenuComponent } from './menu/menu.component';
 import { FavoritesComponent } from './home/favorites/favorites.component';
+import { MaterialModule } from './material/material.module';
+import { HeaderComponent } from './navigation/header/header.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,17 @@ import { FavoritesComponent } from './home/favorites/favorites.component';
     SearchComponent,
     ResultListComponent,
     PopularMoviesComponent,
-    MenuComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   exports: [],
   providers: [],
