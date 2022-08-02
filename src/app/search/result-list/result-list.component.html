@@ -21,6 +21,7 @@
       src="https://image.tmdb.org/t/p/w185{{ movie.poster_path }}"
       (error)="pictureNotLoading($event)"
       alt="{{ movie.original_title }}"
+      (click)="openDialog(movie)"
     />
   </div>
 </div>

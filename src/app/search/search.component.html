@@ -12,7 +12,6 @@
   <app-result-list
     *ngIf="searchResult?.length; else noResults"
     [searchResult]="searchResult"
-    (onSelectedMovie)="onMovieSelected($event)"
   ></app-result-list>
   <!-- <app-detail [selectedMovie]="selectedMovie"></app-detail> -->
 

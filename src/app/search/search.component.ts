@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   private destroySubject$ = new Subject<boolean>();
   isLoading = false;
   searchResult: Movie[] = [] as Movie[];
-  selectedMovie: any;
   minSearchCriteriaLength: number = 3;
   searchCriteriaLength: number = 0;
   delayBetweenKeyPresses: number = 1000;
@@ -55,10 +54,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.searchResult = [];
       }
     });
-  }
-
-  onMovieSelected(movie: any) {
-    this.selectedMovie = movie;
   }
 
   ngOnDestroy(): void {
