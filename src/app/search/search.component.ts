@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { debounceTime, distinctUntilChanged, filter, fromEvent, map, Subject, takeUntil } from 'rxjs';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { debounceTime, distinctUntilChanged, fromEvent, map, Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie';
 import { TmdbService } from 'src/app/shared/tmdb.service';
 
@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   selectedMovie: any;
   minSearchCriteriaLength: number = 3;
   searchCriteriaLength: number = 0;
+  delayBetweenKeyPresses: number = 1000;
 
   constructor(private tmdbService: TmdbService) { }
 
@@ -24,7 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Subscribe to the search request
     fromEvent(this.searchInput?.nativeElement, 'keyup').pipe(
       map((event: any) => event.target.value),
-      debounceTime(1000), // wait 1 sec between keyUp events
+      debounceTime(this.delayBetweenKeyPresses),
       distinctUntilChanged(),  // ignore the same search queries
       takeUntil(this.destroySubject$)
     ).subscribe((query: string) => {

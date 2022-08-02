@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "movie-library"
+  "defaultProject": "movie-library",
+  "cli": {
+    "analytics": false
+  }
 }
