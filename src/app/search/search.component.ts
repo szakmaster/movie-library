@@ -2,6 +2,8 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { debounceTime, distinctUntilChanged, fromEvent, map, Subject, takeUntil } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie';
 import { TmdbService } from 'src/app/shared/tmdb.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailsComponent } from '../movie/details/details.component';
 
 
 @Component({
@@ -14,12 +16,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   private destroySubject$ = new Subject<boolean>();
   isLoading = false;
   searchResult: Movie[] = [] as Movie[];
-  selectedMovie: any;
+  selectedMovie: Movie = {} as Movie; 
   minSearchCriteriaLength: number = 3;
   searchCriteriaLength: number = 0;
   delayBetweenKeyPresses: number = 1000;
 
-  constructor(private tmdbService: TmdbService) { }
+  constructor(private tmdbService: TmdbService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     // Subscribe to the search request
@@ -59,10 +61,20 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   onMovieSelected(movie: any) {
     this.selectedMovie = movie;
+
+    this.dialog.open(DetailsComponent, {
+      width      : '100%',
+      maxWidth   : '1000px',
+      height     : 'auto',
+      hasBackdrop: true,
+      maxHeight  : '850px',
+      data: { ...this.selectedMovie },
+    });
   }
 
   ngOnDestroy(): void {
       this.destroySubject$.next(true);
+
   }
 
   private sortSearchResultByReleaseDate(movies: Movie[]) {
