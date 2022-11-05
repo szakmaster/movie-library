@@ -10,7 +10,6 @@ import { ResultListComponent } from './search/result-list/result-list.component'
 import { SearchComponent } from './search/search.component';
 import { PopularMoviesComponent } from './home/popular-movies/popular-movies.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FavoritesComponent } from './home/favorites/favorites.component';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -24,7 +23,6 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     SearchComponent,
     ResultListComponent,
     PopularMoviesComponent,
-    FavoritesComponent,
     HeaderComponent,
     SidenavListComponent
   ],
