@@ -5,7 +5,7 @@
       class="input-lg form-control well"
       type="search"
       #searchInput
-      placeholder="Search..."
+      placeholder="Enter any movie title here"
     />
   </div>
 
@@ -14,7 +14,8 @@
     [searchResult]="searchResult"
     (onSelectedMovie)="onMovieSelected($event)"
   ></app-result-list>
-  <!-- <app-detail [selectedMovie]="selectedMovie"></app-detail> -->
+  
+  <app-detail [selectedMovie]="selectedMovie"></app-detail>
 
   <ng-template #noResults>
     <img *ngIf="searchCriteriaLength > 0" src="assets/NoSearchResult.gif" />

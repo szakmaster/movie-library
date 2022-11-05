@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Cast } from '../shared/models/cast';
-import { Crew } from '../shared/models/crew';
-import { Movie } from '../shared/models/movie';
+import { Cast } from '../../shared/models/cast';
+import { Crew } from '../../shared/models/crew';
+import { Movie } from '../../shared/models/movie';
 
-import { TmdbService } from '../shared/tmdb.service';
+import { TmdbService } from '../../shared/tmdb.service';
 
 @Component({
   selector: 'app-detail',

@@ -1,6 +1,6 @@
 <h3>Search Results</h3>
 <div class="grid-container">
-  <div class="result-item" *ngFor="let movie of searchResult">
+  <div class="result-item" *ngFor="let movie of searchResult" (click)="getMovieDetails(movie)">
     <h4
       matTooltip="{{ movie.original_title }}"
       [matTooltipPosition]="'above'"
