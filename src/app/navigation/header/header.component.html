@@ -4,15 +4,30 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <div>
-    <a routerLink="/home">Home</a>
-  </div>
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
+  <div fxFlex fxLayout fxLayoutAlign="center" fxHide.xs>
+    <ul fxLayout fxLayoutGap="60px" class="navigation-items">
+      <li class="nav-item">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Home"
+          fontIcon="home"
+        ></mat-icon>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Search"
+          fontIcon="search"
+        ></mat-icon>
         <a routerLink="/search">Search</a>
       </li>
-      <li>
+      <li class="nav-item">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Favorites"
+          fontIcon="favorites"
+        ></mat-icon>
         <a routerLink="/favorites">Favorites</a>
       </li>
     </ul>

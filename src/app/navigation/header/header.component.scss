@@ -22,3 +22,12 @@ mat-toolbar{
         border-radius: 0px;
     }
 }
+
+.nav-item {
+    display: flex;
+}
+
+mat-icon {
+    padding-top: 3px;
+    padding-right: 2px;
+}
